@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Generated gRPC code (regenerate from proto/session.proto)
+session_pb2.py
+session_pb2.pyi
+session_pb2_grpc.py
+
+# Secrets and local config
+.env
+
+# Editor / OS files
+.vscode/
+.idea/
+Thumbs.db
+
+# Logs
+*.log
