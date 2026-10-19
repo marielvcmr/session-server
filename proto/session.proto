@@ -1,0 +1,65 @@
+// SessionService · contrato v1.0.0
+
+syntax = "proto3";
+
+package auth;
+
+// ---------- Mensajes ----------
+
+message User {
+  int32 id = 1;
+  string username = 2;
+  string display_name = 3;
+}
+
+message CreateUserRequest {
+  string username = 1;
+  string password = 2;
+  string display_name = 3;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;        // valor que irá en la cookie
+  int64 expires_at = 2;    // segundos desde 1970 (Unix time)
+  User user = 3;
+}
+
+message ValidateSessionRequest {
+  string token = 1;
+}
+
+message ValidateSessionResponse {
+  User user = 1;
+  int64 expires_at = 2;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
+  bool ok = 1;
+}
+
+// ---------- Servicios ----------
+
+service UserService {
+
+  rpc CreateUser (CreateUserRequest) returns (User);
+  
+}
+
+service SessionService {
+
+  rpc Login (LoginRequest) returns (LoginResponse);
+
+  rpc ValidateSession (ValidateSessionRequest) returns (ValidateSessionResponse);
+
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+
+}
