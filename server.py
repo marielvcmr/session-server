@@ -115,7 +115,7 @@ def serve():
     rpc.add_UserServiceServicer_to_server(UserService(), server)
     rpc.add_SessionServiceServicer_to_server(SessionService(), server)
     server.add_insecure_port(
-        f"0.0.0.0:{PORT}"
+        f"0.0.0.0:{50051}"
     )  # 0.0.0.0 = acepta conexiones de otras máquinas
     server.start()
     print(f"SessionService escuchando en el puerto {PORT}")
